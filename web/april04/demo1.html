@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form action="" name="f1">
+        <tr>
+            <td>course</td>
+            <td>
+                <select name="courses" id="" onchange="total()">
+                    <option>------select-------</option>
+                    <option>MSOFFICE</option>
+                    <option>multimeida</option>
+                    <option>java</option>
+                    <option>c</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>total fee</td>
+            <td>
+                <input type="text" name="totalfee" id="totalfee" value="0" readonly>
+            </td>
+        </tr>
+        <tr>
+            <td>scholarship</td>
+            <td>
+                <input type="radio" name="r1" id="" onclick="conc(1)">pmsc
+                <input type="radio" name="r1" id="" onclick="conc(2)">isc
+                <input type="radio" name="r1" id="" onclick="conc(3)">lsc
+            </td>
+        </tr>
+        <tr>
+            <td>concession</td>
+            <td>
+                <input type="text" name="concession" id="" readonly>
+        </tr>
+        <tr>
+            <td>due fee</td>
+            <td>
+                <input type="text" name="duefee" id="duefee"readonly>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <input type="button" value="submit" onclick="submit()">
+                <input type="reset" value="reset">
+            </td>
+        </tr>
+    </form>
+    <script>
+        function total() {
+            var course = document.f1.courses.value;
+            var fee = 0;
+            if (course == "MSOFFICE") {
+                fee = 5000;
+            } else if (course == "multimeida") {
+                fee = 6000;
+            } else if (course == "java") {
+                fee = 7000;
+            } else if (course == "c") {
+                fee = 8000;
+            }
+            document.f1.totalfee.value = fee;
+        }
+
+        function conc(x) {
+            var fee = document.f1.totalfee.value;
+            var con = 0;
+            if (x == 1) {
+                con = fee * 0.25;
+            } else if (x == 2) {
+                con = fee * 0.50;
+            } else if (x == 3) {
+                con = fee * 0.75;
+            }
+            document.f1.concession.value = con;
+            var due = fee - con;
+            document.f1.duefee.value = due;
+        }
+        function submit() {
+            var course = document.f1.courses.value;
+            var fee = document.f1.totalfee.value;
+            var con = document.f1.concession.value;
+            var due = document.f1.duefee.value;
+            if (course == "------select-------") {
+                alert("please select course");
+                return false;
+            } else if (fee == 0) {
+                alert("please select course");
+                return false;
+            } else if (con == 0) {
+                alert("please select concession");
+                return false;
+            } else if (due == 0) {
+                alert("please select concession");
+                return false;
+            } else {
+                alert("form submitted successfully");
+            }
+        }
+    </script>
+</body>
+</html>
