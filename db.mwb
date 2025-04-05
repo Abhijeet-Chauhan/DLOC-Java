@@ -1,0 +1,474 @@
+create database student_record;
+USE student_record;
+CREATE TABLE student (
+    studentid int primary key auto_increment,
+    name varchar(255),
+	marks int,
+    grade varchar(1),
+    collegeName varchar(255)
+);
+
+drop table student;
+insert into student( name, marks, grade,collegeName)
+values
+( "Abhi", 96, "A", "sjcem"),
+( "om", 93, "A", "sjcem"),
+("karan", 94, "A", "sjcem"),
+("Abhishek", 95, "A", "sjcem");
+
+delete from student;
+
+truncate table student;
+
+select * from person;
+show databases;
+
+CREATE TABLE person (
+    name varchar(10),
+    age int not null
+);
+
+desc person;
+insert into person( name,age)
+values
+( "Abhi's", 96),
+( "om", null);
+
+CREATE TABLE person4 (
+    pname varchar(10) default"no name provided ok",
+    age int not null
+);
+
+
+create table person2(
+age int not null,
+ pname varchar(255) default "no name provided");
+ 
+ select * from person2;
+ 
+ create table person5(
+age int not null,
+ pname varchar(255) not null default "no name provided");
+ 
+  create table person6(
+age int not null unique,
+ pname varchar(255) unique);
+ 
+ insert into person6( pname,age)
+values
+( "Abhi", 96),
+( "Abhi", 23);
+
+create table houses(
+purchase_price int,
+selling_price int,
+constraint sprice_gt_pprice check(selling_price>=purchase_price));
+ 
+ insert into houses(purchase_price, selling_price)
+ values
+ (1230,1100);
+ 
+ 
+ create table employee(
+ id int auto_increment primary key,
+ lname varchar(10),
+ fname varchar(10),
+ mname varchar(10),
+ age int,
+ current_status varchar(10) default "empoyed"
+); 
+
+UPDATE employee
+SET current_status = 'promoted';
+
+ create table cats(
+ id int auto_increment primary key,
+ name varchar(10),
+ breed varchar(10),
+ age int
+); 
+
+INSERT INTO cats(name, breed, age) 
+VALUES ('Ringo', 'Tabby', 4),
+       ('Cindy', 'Maine Coon', 10),
+       ('Dumbledore', 'Maine Coon', 11),
+       ('Egg', 'Persian', 4),
+       ('Misty', 'Tabby', 13),
+       ('George', 'Ragdoll', 9),
+       ('Jackson', 'Sphynx', 7);
+
+UPDATE cats
+SET breed = 'short hair' 
+where breed = "Tabby";
+
+delete from cats where id = age;
+
+select name,age from cats where breed='Tabby';
+select * from cats where id=age;
+select * from cats c where c.id=age;
+
+SELECT id AS id FROM cats where id=4;
+
+
+
+CREATE TABLE shirts (
+    shirt_id INT AUTO_INCREMENT PRIMARY KEY,
+    article VARCHAR(50),
+    color VARCHAR(50),
+    shirt_size VARCHAR(5),
+    last_worn INT
+);
+
+INSERT INTO shirts (article, color, shirt_size, last_worn)  
+VALUES 
+	('t-shirt', 'white', 'S', 10),
+	('t-shirt', 'green', 'S', 200),
+	('polo shirt', 'black', 'M', 10),
+	('tank top', 'blue', 'S', 50),
+	('t-shirt', 'pink', 'S', 0),
+	('polo shirt', 'red', 'M', 5),
+	('tank top', 'white', 'S', 200),
+	('tank top', 'blue', 'M', 15);
+    
+    INSERT INTO shirts (article, color, shirt_size, last_worn)
+VALUES ('polo shirt','purple', 'M', 50);
+
+select article, color from shirts;
+
+select article, color,shirt_size, last_worn from shirts where shirt_size = "M";
+
+update shirts
+set shirt_size = "L" where article = "polo shirt";
+
+update shirts
+set last_worn =0 where last_worn = 15;
+
+update shirts
+set color = "off white", shirt_size="XL" where color ="white";
+
+delete from shirts where last_worn >=200;
+
+CREATE TABLE books 
+	(
+		book_id INT NOT NULL AUTO_INCREMENT,
+		title VARCHAR(100),
+		author_fname VARCHAR(100),
+		author_lname VARCHAR(100),
+		released_year INT,
+		stock_quantity INT,
+		pages INT,
+		PRIMARY KEY(book_id)
+	);
+    
+    INSERT INTO books (title, author_fname, author_lname, released_year, stock_quantity, pages)
+VALUES
+('The Namesake', 'Jhumpa', 'Lahiri', 2003, 32, 291),
+('Norse Mythology', 'Neil', 'Gaiman',2016, 43, 304),
+('American Gods', 'Neil', 'Gaiman', 2001, 12, 465),
+('Interpreter of Maladies', 'Jhumpa', 'Lahiri', 1996, 97, 198),
+('A Hologram for the King: A Novel', 'Dave', 'Eggers', 2012, 154, 352),
+('The Circle', 'Dave', 'Eggers', 2013, 26, 504),
+('The Amazing Adventures of Kavalier & Clay', 'Michael', 'Chabon', 2000, 68, 634),
+('Just Kids', 'Patti', 'Smith', 2010, 55, 304),
+('A Heartbreaking Work of Staggering Genius', 'Dave', 'Eggers', 2001, 104, 437),
+('Coraline', 'Neil', 'Gaiman', 2003, 100, 208),
+('What We Talk About When We Talk About Love: Stories', 'Raymond', 'Carver', 1981, 23, 176),
+("Where I'm Calling From: Selected Stories", 'Raymond', 'Carver', 1989, 12, 526),
+('White Noise', 'Don', 'DeLillo', 1985, 49, 320),
+('Cannery Row', 'John', 'Steinbeck', 1945, 95, 181),
+('Oblivion: Stories', 'David', 'Foster Wallace', 2004, 172, 329),
+('Consider the Lobster', 'David', 'Foster Wallace', 2005, 92, 343);
+
+select concat(author_fname,' ',author_lname) as fullname from books;
+
+select concat_ws('-',title,author_fname,author_lname) as fullname from books;
+
+select substring(author_lname,1,1)from books;
+
+select concat(substring(title,1,10),'...') as short_title from books;
+
+select replace(title,' ','-') from books;
+
+select concat(author_fname,reverse(author_fname)) from books;
+
+select author_lname,char_length(author_lname) from books;
+
+select concat(author_lname," is ",char_length(author_lname)," long") from books;
+
+select left(author_lname,7) from books;
+
+select title, char_length(title) from books;
+
+select  concat(substring(title,1,10),'...') as short_title, concat(author_fname," ",author_lname) as fullname, concat(stock_quantity," in stock") as stock from books;
+
+INSERT INTO books
+    (title, author_fname, author_lname, released_year, stock_quantity, pages)
+    VALUES ('10% Happier', 'Dan', 'Harris', 2014, 29, 256), 
+           ('fake_book', 'Freida', 'Harris', 2001, 287, 428),
+           ('Lincoln In The Bardo', 'George', 'Saunders', 2017, 1000, 367);
+           
+select distinct concat(author_fname," ",author_lname) as fullname from books;
+
+select author_fname,author_lname from books
+order by 1,2;
+
+select book_id,author_fname,author_lname from books
+limit 5;
+
+select book_id,released_year from books
+order by released_year
+desc limit 1;
+
+select book_id,author_fname,author_lname,pages,title from books where title like '_H%';
+
+select title from books where title like 'the%';
+
+select title from books where title like '%stories%';
+
+select title from books where title like '%\%%';
+
+select concat(title,'-',released_year) as summary from books
+order by released_year desc
+limit 3; 
+
+select title from books where title like '% %';
+
+select concat("my fav author is ",upper(author_fname)," ",upper(author_lname),"...") from books;
+show databases;
+use student_record;
+show tables;
+select count(*) from books;
+
+select count(*) from books where title like '%the%';
+
+select author_lname,count(author_lname)as books_written from books group by author_lname order by books_written desc;
+
+select released_year, count(*) from books group by released_year;
+
+select max(pages) from books;
+
+select title,pages from books order by pages desc limit 1;
+
+select title,pages from books where pages=(select max(pages) from books);
+
+select released_year from books order by released_year desc;
+select title,released_year from books where released_year=(select min(released_year) from books);
+
+SELECT CONCAT(AUTHOR_LNAME, ' ', AUTHOR_FNAME) AS FULLNAME,COUNT(TITLE) FROM BOOKS GROUP BY FULLNAME;
+
+select CONCAT(AUTHOR_LNAME, ' ', AUTHOR_FNAME) AS FULLNAME, min(released_year) as oldest, max(released_year) as recent from books GROUP BY FULLNAME;
+
+select CONCAT(AUTHOR_LNAME, ' ', AUTHOR_FNAME) AS FULLNAME,count(title), max(pages), min(released_year) as oldest, max(released_year) as recent from books GROUP BY FULLNAME;
+
+select CONCAT(AUTHOR_LNAME, ' ', AUTHOR_FNAME) AS FULLNAME, sum(pages) from books GROUP BY FULLNAME;
+
+select avg(released_year) from books;
+
+select released_year, count(title),avg(stock_quantity) from books group by released_year; 
+
+select title, pages from books where length(title) > 30 and pages > 500;
+
+select title, pages from books where length(title) > 30 and pages > 500 and title like '%stories%';
+
+select title,released_year from books where released_year>2004  and released_year<2015; 
+select title,released_year from books where released_year between 2004  and 2015; 
+
+select title,author_lname from books where author_lname='Lahiri' or 'Smith' or 'Carver';
+
+SELECT TITLE, AUTHOR_LNAME FROM BOOKS WHERE AUTHOR_LNAME = "LAHIRI" OR AUTHOR_LNAME = "SMITH" OR AUTHOR_LNAME = "CARVER";
+
+select title,author_lname from books where author_lname in ('Lahiri', 'Smith' , 'Carver');
+
+select title,released_year, case when released_year>=2000 then 'modern era' else '20th century' end as era from books;
+
+select title,stock_quantity, case when stock_quantity<40 then '*' when stock_quantity between 41 and 70 then '**' else '***' end as stock from books;
+
+show tables;
+select * from employee;
+
+INSERT INTO employee (id, lname, fname, mname, age, current_status)
+VALUES 
+    (1, 'Doe', 'John', 'Michael', 30, 'Active'),
+    (2, 'Smith', 'Jane', NULL, 25, NULL);
+
+select * from employee where mname is not NULL;
+
+SELECT AUTHOR_LNAME, AUTHOR_FNAME, case when count(*) = 1 then '1 book' else concat(count(*)," books") end as books FROM BOOKS 
+GROUP BY  AUTHOR_LNAME, AUTHOR_FNAME ;
+
+CREATE TABLE customer (
+    id INT PRIMARY KEY auto_increment,
+    fname VARCHAR(10),
+    lname VARCHAR(10),
+    email VARCHAR(30)
+);
+
+CREATE TABLE orders (
+    id INT PRIMARY KEY auto_increment,
+    order_date date,
+    amount decimal(8,2),
+    customer_id int,
+     foreign key (customer_id) references customer(id)
+);
+
+INSERT INTO CUSTOMER (fname, lname, EMAIL) VALUES
+('John', 'Doe', 'john.doe@example.com'),
+('Jane', 'Smith', 'jane.smith@example.com'),
+('Michael', 'Johnson', 'michael.johnson@example.com'),
+('Emily', 'Davis', 'emily.davis@example.com'),
+('Chris', 'Brown', 'chris.brown@example.com'),
+('Sarah', 'Wilson', 'sarah.wilson@example.com'),
+('David', 'Martinez', 'david.martinez@example.com'),
+('Emma', 'Anderson', 'emma.anderson@example.com'),
+('James', 'Taylor', 'james.taylor@example.com'),
+('Olivia', 'Thomas', 'olivia.thomas@example.com');
+
+INSERT INTO ORDERs (ORDER_DATE, AMOUNT, CUSTOMER_ID) VALUES
+('2024-03-01', 100.50, 1),
+('2024-03-02', 250.75, 2),
+('2024-03-03', 300.00, 3),
+('2024-03-04', 99.99, 4),
+('2024-03-05', 450.25, 5),
+('2024-03-06', 120.00, 6),
+('2024-03-07', 200.80, 7),
+('2024-03-08', 75.60, 8),
+('2024-03-09', 500.90, 9),
+('2024-03-10', 320.40, 10);
+INSERT INTO ORDERS (ORDER_DATE, AMOUNT, CUSTOMER_ID) VALUES
+('2024-03-11', 150.75, 1),
+('2024-03-12', 275.30, 3),
+('2024-03-13', 90.45, 5),
+('2024-03-14', 310.80, 7),
+('2024-03-15', 225.60, 9);
+
+select * from orders;
+select * from customer;
+
+
+select * from customer where lname='Johnson';
+
+select * from orders where customer_id=(select id from customer where lname='davis');
+
+select * from customer join orders on orders.customer_id = customer_id;
+
+select * from customer left join orders on orders.customer_id = customer_id;
+
+select * from customer right join orders on orders.customer_id = customer_id;
+
+use student_record;
+show tables;
+select *from employee3;
+
+DELIMITER //
+
+create procedure addtwonumberd(
+in num1 int,
+in num2 int,
+out result int
+)
+
+begin
+set result = num1+num2;
+end //
+
+delimiter ;
+
+call addtwonumberd(5,100,@output);
+select @output as result;
+
+DELIMITER //
+
+create procedure empsal(
+in id int,
+out salary int
+)
+
+begin
+select esal into salary from employee3 where eid=id;
+end //
+
+delimiter ;
+
+call empsal(2,@sal);
+select @sal as salary;
+
+delimiter $$
+create function avg_numbers(num1 double, num2 double)
+returns double 
+deterministic
+begin
+return (num1+num2)/2;
+end $$
+delimiter ;
+
+select avg_numbers(222,56);
+
+delimiter $$
+create function avg_salary(eid1 int, eid2 int)
+returns double 
+deterministic
+begin
+declare salary1 double;
+declare salary2 double;
+select esal into salary1 from employee3 where eid=eid1;
+select esal into salary2 from employee3 where eid=eid2;
+return (salary1+salary2)/2;
+end $$
+delimiter ;
+
+select avg_salary(2,3);
+-- -----------------------------------------------------------------------------------------------------
+create table products(id int auto_increment primary key, name varchar(90), price decimal(10,2) not null,
+quantity int not null,
+created_at timestamp default current_timestamp,
+updated_at timestamp default current_timestamp on update current_timestamp
+);
+
+INSERT INTO products (name, price, quantity) VALUES
+('Laptop', 1200.99, 10),
+('Smartphone', 799.49, 15),
+('Headphones', 149.99, 25);
+
+select * from products
+
+delimiter $$
+create trigger before_products_update
+before update on products
+for each row
+begin
+set new.updated_at=now();
+end $$
+delimiter ;
+
+
+create table customer_balance(customer_id int primary key,  balance decimal(10,2) not null);
+
+create table orders1(id int auto_increment primary key, customer_id int, total_amount decimal(10,2) not null,foreign key(customer_id) references customer_balance(customer_id));
+
+INSERT INTO customer_balance (customer_id, balance) VALUES
+(1, 500.00),
+(2, 1000.00),
+(3, 750.00);
+
+INSERT INTO orders1 (customer_id, total_amount) VALUES
+(1, 100.00),
+(2, 250.00),
+(3, 50.00);
+
+select * from customer_balance;
+select * from orders1;
+
+
+delimiter $$
+create trigger after_order_insert
+after insert on orders1
+for each row
+begin
+update customer_balance
+set balance=balance-new.total_amount
+where customer_id = new.customer_id;
+end $$
+delimiter ;
+
+insert into orders1(customer_id, total_amount) values(2,200.00);
+

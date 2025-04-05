@@ -1,0 +1,27 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+public class jdbc8 {
+public static void main(String[] args)throws Exception {
+	
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		String url="jdbc:mysql://localhost:3306/student_record";
+		String username="root";
+		String pswd = "0000";
+		
+		Connection con=DriverManager.getConnection(url,username,pswd);
+		Statement stmt=con.createStatement();
+		
+		ResultSet rs = stmt.executeQuery("select * from Employee3 order by esal desc;");
+		if(con.isClosed()) {
+			System.out.println("Connection is closed");
+		}
+		else {
+			System.out.println("Connecion established");
+		}
+		
+		while(rs.next()) {
+			System.out.println(rs.getInt(1)+".."+rs.getString(2)+".."+rs.getString(3)+".."+rs.getString(4));
+}
+}}
