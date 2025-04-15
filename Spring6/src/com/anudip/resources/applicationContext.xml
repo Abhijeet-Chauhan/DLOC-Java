@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+<bean class="com.anudip.beans.Address" id="addrId1" autowire-candidate="true">
+<constructor-arg value="mumbai"></constructor-arg>
+<constructor-arg value="12332"></constructor-arg>
+</bean>
+
+<bean class="com.anudip.beans.Address" id="addrId2" autowire-candidate="false">
+<constructor-arg value="palghar"></constructor-arg>
+<constructor-arg value="12332"></constructor-arg>
+</bean>
+
+<bean class="com.anudip.beans.Student" id="std" autowire="constructor"> 
+<constructor-arg value="abhijeet" index="1"></constructor-arg>
+<constructor-arg value="23" index="0"> </constructor-arg>
+</bean>
+
+</beans>

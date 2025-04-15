@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+<bean class="com.anudip.beans.Address" id="addrId1" autowire-candidate="false">
+<property name="city" value="Mumabi"></property>
+<property name="pincode" value="12233"></property>
+</bean>
+
+<bean class="com.anudip.beans.Address" id="addrId2" autowire-candidate="true">
+<property name="city" value="palghar"></property>
+<property name="pincode" value="12233"></property>
+</bean>
+
+<bean class="com.anudip.beans.Student" id="std2=Id" autowire="byType"> --> addrId1
+<bean class="com.anudip.beans.Student" id="std2=Id" autowire="byName"> --> address
+<property name="rollno" value="101"></property>
+<property name="name" value="Abhi"></property>
+</bean>
+
+</beans>

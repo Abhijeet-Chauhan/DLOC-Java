@@ -1,8 +1,0 @@
-package march31;
-interface i1{
-	public void method1();
-}
-public class code1 {
-	i1 i= ()->System.out.println("method 1");
-	i.method1();
-}
